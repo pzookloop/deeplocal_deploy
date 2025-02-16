@@ -1,0 +1,24 @@
+services:
+  ollama:
+    image: ollama/ollama
+    container_name: ollama
+    volumes:
+      - ./ollama:/root/.ollama
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 10s
+      timeout: 30s
+      retries: 5
+      start_period: 10s
+    network_mode: "host"
+
+  web-ui:
+    image: ghcr.io/open-webui/open-webui
+    container_name: webui
+    volumes:
+      - ./web-ui:/app/backend/data
+    environment:
+      - OLLAMA_BASE_URL=ollama
+    depends_on:
+      - ollama
+    network_mode: "host"
