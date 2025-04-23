@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5c7742fc-3cf1-4f6f-b61f-b6d1593b1780" name="Changes" comment="dify也成功了,问题出在plugin-daemon插件, 他的代理配置有问题">
-      <change beforePath="$PROJECT_DIR$/guide.txt" beforeDir="false" afterPath="$PROJECT_DIR$/guide.txt" afterDir="false" />
-    </list>
+    <list default="true" id="5c7742fc-3cf1-4f6f-b61f-b6d1593b1780" name="Changes" comment="dify也成功了,问题出在plugin-daemon插件, 他的代理配置有问题" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -62,7 +60,7 @@
       <workItem from="1745250050620" duration="1166000" />
       <workItem from="1745331770644" duration="269000" />
       <workItem from="1745336553022" duration="3799000" />
-      <workItem from="1745413949695" duration="2783000" />
+      <workItem from="1745413949695" duration="2964000" />
     </task>
     <task id="LOCAL-00001" summary="单独创建ollama镜像,只能使用api调用方式使用">
       <option name="closed" value="true" />

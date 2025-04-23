@@ -1,17 +1,26 @@
 services:
   ollama:
     image: ollama/ollama
-    runtime: nvidia
     container_name: ollama
+    hostname: ollama
+    ports:
+      - "11434:11434"
     volumes:
       - ./ollama:/root/.ollama
+    environment:
+      HTTP_PROXY: http://192.168.0.102:7890
+      HTTPS_PROXY: http://192.168.0.102:7890
+      NO_PROXY: "localhost,127.0.0.1,0.0.0.0,172.*"
+      no_proxy: "localhost,127.0.0.1,0.0.0.0,172.*"
+      https_proxy: http://192.168.0.102:7890
+      http_proxy: http://192.168.0.102:7890
+    runtime: nvidia
     healthcheck:
       test: ["CMD", "ollama", "list"]
       interval: 10s
       timeout: 30s
       retries: 5
       start_period: 10s
-    network_mode: "host"
     deploy:
       resources:
         reservations:
@@ -19,22 +28,7 @@ services:
             - driver: nvidia
               count: all
               capabilities: [gpu]
-
-  web-ui:
-    image: ghcr.io/open-webui/open-webui
-    runtime: nvidia
-    container_name: webui
-    volumes:
-      - ./web-ui:/app/backend/data
-    environment:
-      - OLLAMA_BASE_URL=http://0.0.0.0:11434
-    depends_on:
-      - ollama
-    network_mode: "host"
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: all
-              capabilities: [gpu]
+    networks:
+      - genai_network
+networks:
+  genai_network:
